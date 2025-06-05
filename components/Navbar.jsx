@@ -1,10 +1,10 @@
 'use client';
-import Image from 'next/image';
+import { useState } from 'react';
 import Link from 'next/link';
-import React, { useState } from 'react';
 
-function Navbar() {
+export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState('home');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,24 +14,27 @@ function Navbar() {
     setIsMenuOpen(false);
   };
 
+  const handlePageClick = (page) => {
+    setCurrentPage(page);
+    closeMenu();
+  };
+
   return (
-    <div className="fixed top-0 left-0 w-full z-50 text-black md:p-2 font-medium">
-      {' '}
-      {/* bg-white/5 backdrop-blur-md border-b border-gray-200/30 shadow-sm */}
-      <nav className="flex flex-col lg:flex-row justify-between items-center max-w-7xl mx-auto px-4 py-2">
+    <div className="fixed top-0 left-0 w-full z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg">
+      <nav className="flex flex-col lg:flex-row justify-between items-center max-w-7xl mx-auto px-6 py-2">
         <div className="flex items-center space-x-6 w-full lg:w-auto justify-between">
-          <Link href="#home" className="text-3xl md:text-4xl">
-            <h1 className="text-blue-950 font-extrabold hover:text-blue-800 uppercase">
+          <Link href="#home" className="text-2xl md:text-3xl">
+            <h1 className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-black hover:from-blue-900 hover:to-purple-900 transition-all duration-300 uppercase tracking-wider">
               Estate
             </h1>
           </Link>
           <button
             onClick={toggleMenu}
-            className="lg:hidden focus:outline-none bg-white/50 backdrop-blur-md rounded-2xl p-2 border border-gray-200 hover:bg-blue-700 hover:text-white transition-colors duration-300"
+            className="lg:hidden focus:outline-none bg-white/10 backdrop-blur-md rounded-xl p-2 border border-white/20 hover:bg-white/20 hover:scale-105 transition-all duration-300 group"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-blue-950 hover:text-blue-700"
+              className="h-5 w-5 text-gray-900 group-hover:text-gray-900 transition-colors duration-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -46,30 +49,49 @@ function Navbar() {
           </button>
         </div>
         {/* Options */}
-        <div className="w-full flex flex-col items-center lg:flex-row lg:justify-end lg:items-center font-semibold text-[18px] p-1">
-          <div className="space-x-12 hidden lg:flex rounded-full bg-white/50 backdrop-blur-md border-b border-gray-200/30 shadow-sm">
+        <div className="w-full flex flex-col items-center lg:flex-row lg:justify-end lg:items-center font-medium text-[14px]">
+          <div className="space-x-2 hidden lg:flex rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-lg p-1">
             <Link
               href="#home"
-              className="text-md hover:bg-blue-950 hover:text-white px-3 py-1 rounded-full ease-in-out duration-300"
+              onClick={() => handlePageClick('home')}
+              className={`px-4 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                currentPage === 'home'
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                  : 'text-gray-900 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white'
+              }`}
             >
               Home
             </Link>
             <Link
               href="#about"
-              className="text-md hover:bg-blue-950 hover:text-white px-3 py-1 rounded-full ease-in-out duration-300"
+              onClick={() => handlePageClick('about')}
+              className={`px-4 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                currentPage === 'about'
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                  : 'text-gray-900 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white'
+              }`}
             >
               About
             </Link>
             <Link
               href="#properties"
-              className="text-md hover:bg-blue-950 hover:text-white px-3 py-1 rounded-full ease-in-out duration-300"
+              onClick={() => handlePageClick('properties')}
+              className={`px-4 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                currentPage === 'properties'
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                  : 'text-gray-900 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white'
+              }`}
             >
               Properties
             </Link>
-
             <Link
               href="#contact"
-              className="bg-blue-950 rounded-full text-white text-md hover:bg-blue-700 hover:text-white px-3 py-1 ease-in-out duration-300"
+              onClick={() => handlePageClick('contact')}
+              className={`px-4 py-2 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 ${
+                currentPage === 'contact'
+                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+                  : 'text-gray-900 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-500 hover:text-white'
+              }`}
             >
               Contact
             </Link>
@@ -78,40 +100,64 @@ function Navbar() {
       </nav>
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white/50 backdrop-blur-md rounded-md border border-gray-100 text-black text-center space-y-4 py-10">
+        <div className="lg:hidden bg-white/10 backdrop-blur-xl rounded-b-2xl border-t border-white/20 text-center space-y-2 py-4 mx-4 mb-4 shadow-xl">
           <Link
             href="#home"
-            className="block hover:underline"
-            onClick={closeMenu}
+            className="block"
+            onClick={() => handlePageClick('home')}
           >
-            <span className="bg-blue-950 text-white px-4 p-2 rounded-full font-bold hover:bg-blue-700">
+            <span
+              className={`inline-block px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 ${
+                currentPage === 'home'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                  : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600'
+              }`}
+            >
               Home
             </span>
           </Link>
           <Link
             href="#about"
-            className="block hover:underline"
-            onClick={closeMenu}
+            className="block"
+            onClick={() => handlePageClick('about')}
           >
-            <span className="bg-blue-950 text-white px-4 p-2 rounded-full font-bold hover:bg-blue-700">
+            <span
+              className={`inline-block px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 ${
+                currentPage === 'about'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                  : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600'
+              }`}
+            >
               About
             </span>
           </Link>
           <Link
             href="#properties"
-            className="block hover:underline"
-            onClick={closeMenu}
+            className="block"
+            onClick={() => handlePageClick('properties')}
           >
-            <span className="bg-blue-950 text-white px-4 p-2 rounded-full font-bold hover:bg-blue-700">
+            <span
+              className={`inline-block px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 ${
+                currentPage === 'properties'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                  : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600'
+              }`}
+            >
               Properties
             </span>
           </Link>
           <Link
             href="#contact"
-            className="block hover:underline"
-            onClick={closeMenu}
+            className="block"
+            onClick={() => handlePageClick('contact')}
           >
-            <span className="bg-blue-950 text-white px-4 p-2 rounded-full font-bold hover:bg-blue-700">
+            <span
+              className={`inline-block px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 ${
+                currentPage === 'contact'
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+                  : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:from-blue-600 hover:to-purple-600'
+              }`}
+            >
               Contact
             </span>
           </Link>
@@ -120,5 +166,3 @@ function Navbar() {
     </div>
   );
 }
-
-export default Navbar;
