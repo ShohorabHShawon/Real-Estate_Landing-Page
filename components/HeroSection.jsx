@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { Inspiration } from 'next/font/google';
+import Link from 'next/link';
 
 const inspiration = Inspiration({
   subsets: ['latin'],
@@ -63,12 +64,18 @@ export default function HeroSection() {
               Discover the perfect property that matches your lifestyle
             </p>
             <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-              <button className="bg-blue-950 hover:bg-blue-800 text-white px-6 py-3 rounded-md font-medium transition">
+              <Link
+                href="#properties"
+                className="bg-blue-950 hover:bg-blue-800 text-white px-6 py-3 rounded-md font-medium transition"
+              >
                 View Properties
-              </button>
-              <button className="bg-white hover:bg-gray-100 text-blue-950 px-6 py-3 rounded-md font-medium transition">
+              </Link>
+              <Link
+                href="#contact"
+                className="bg-white hover:bg-gray-100 text-blue-950 px-6 py-3 rounded-md font-medium transition"
+              >
                 Contact Us
-              </button>
+              </Link>
             </div>
           </div>
         </div>
