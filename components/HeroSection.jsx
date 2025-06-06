@@ -69,7 +69,7 @@ export default function HeroSection() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <Link
                 href="#properties"
-                className="group bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
+                className="group bg-gradient-to-r from-blue-500 to-purple-600 hover:to-blue-800 text-white px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
               >
                 <span className="flex items-center gap-2">
                   View Properties
