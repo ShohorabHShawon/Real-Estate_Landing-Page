@@ -279,6 +279,128 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Footer */}
+      <footer className="bg-gradient-to-br from-gray-950 via-blue-950 to-gray-950 text-white relative overflow-hidden border-t border-white/10">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 right-10 w-40 h-40 bg-purple-400 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          {/* Main Footer Content */}
+          <div className="py-16 grid lg:grid-cols-4 md:grid-cols-2 gap-8">
+            {/* Company Info */}
+            <div className="lg:col-span-2">
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl mb-6">
+                <span className="text-xl">🏢</span>
+              </div>
+              <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                Real Estate Agency
+              </h3>
+              <p className="text-gray-300 mb-6 max-w-md">
+                Your trusted partner in finding the perfect home. With over 20
+                years of experience, we make your real estate dreams a reality.
+              </p>
+              <div className="flex space-x-4">
+                {['📘', '📷', '🐦', '💼'].map((icon, index) => (
+                  <div
+                    key={index}
+                    className="w-10 h-10 bg-white/10 hover:bg-gradient-to-r hover:from-blue-500 hover:to-purple-600 rounded-lg flex items-center justify-center cursor-pointer transition-all duration-300 hover:scale-110"
+                  >
+                    <span className="text-sm">{icon}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 className="text-lg font-semibold mb-6 text-blue-300">
+                Quick Links
+              </h4>
+              <ul className="space-y-3">
+                {['Home', 'About', 'Properties', 'Contact'].map(
+                  (link, index) => (
+                    <li key={index}>
+                      <a
+                        href={`#${link.toLowerCase()}`}
+                        className="text-gray-300 hover:text-blue-400 transition-colors cursor-pointer"
+                      >
+                        {link}
+                      </a>
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="text-lg font-semibold mb-6 text-blue-300">
+                Services
+              </h4>
+              <ul className="space-y-3">
+                {[
+                  'Property Sales',
+                  'Property Rentals',
+                  'Property Management',
+                  'Investment Advice',
+                ].map((service, index) => (
+                  <li
+                    key={index}
+                    className="text-gray-300 hover:text-blue-400 transition-colors cursor-pointer"
+                  >
+                    {service}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Contact Info Bar */}
+          <div className="py-8 border-t border-white/10">
+            <div className="grid md:grid-cols-3 gap-6 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-sm">📧</span>
+                </div>
+                <span className="text-gray-300">info@realestateagency.com</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                  <span className="text-sm">📱</span>
+                </div>
+                <span className="text-gray-300">(123) 456-7890</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-3">
+                <div className="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                  <span className="text-sm">📍</span>
+                </div>
+                <span className="text-gray-300">Downtown Real Estate Hub</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="py-6 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm mb-4 md:mb-0">
+              © 2024 Real Estate Agency. All rights reserved.
+            </p>
+            <div className="flex space-x-6 text-sm">
+              <span className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors">
+                Privacy Policy
+              </span>
+              <span className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors">
+                Terms of Service
+              </span>
+              <span className="text-gray-400 hover:text-blue-400 cursor-pointer transition-colors">
+                Cookie Policy
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
